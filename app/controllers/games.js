@@ -31,7 +31,7 @@ var Games = function () {
     roundPlayer.save();
     self.session.set('currentRound', round.id);
     
-    this.redirect({controller: this.name, action: 'game'});
+    this.redirect({controller: this.name, action: 'play'});
   }
   
   this.play = function (req, resp, params) {
