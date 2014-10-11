@@ -13,19 +13,22 @@ var Games = function () {
     var player = geddy.model.Player.create({
       name: req.playerName
     , jobClass: req.jobClass
-    }).save();
+    });
+    player.save();
     self.session.set('playerId', player.id);
     // create a round
     var round = geddy.model.Round.create({
       status: 'active'
-    }).save();
+    });
+    round.save();
     // create a round_player
     var roundPlayer = geddy.model.RoundPlayer.create({
       round: round.id
     , player: player.id
     , turns: geddy.config.numberOfTurns
     , score: 0
-    }).save();
+    });
+    roundPlayer.save();
     self.session.set('currentRound', round.id);
     
     this.redirect({controller: this.name, action: 'game'});
