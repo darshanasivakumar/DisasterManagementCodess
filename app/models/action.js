@@ -2,6 +2,11 @@ var Action = function () {
 
   this.defineProperties({
     name: {type: 'string', required: true}
+  , story: {type: 'text'}
+  , image: {type: 'string'}
+  , quota: {type: 'number'}
+  , goodAnswer: {type: 'string'}
+  , badAnswer: {type: 'string'}
   });
 
   /*
