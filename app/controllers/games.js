@@ -11,8 +11,8 @@ var Games = function () {
     
     // create a player
     var player = geddy.model.Player.create({
-      name: req.playerName
-    , jobClass: req.jobClass
+      name: params.playerName
+    , jobClass: params.jobClass
     });
     player.save();
     self.session.set('playerId', player.id);
@@ -38,13 +38,14 @@ var Games = function () {
     var self = this;
     
     // get player
-    geddy.model.Player.first(self.session.get('playerId'), function (err, player) {
+    geddy.model.Player.first({id: self.session.get('playerId')}, function (err, player) {
       if (err) throw geddy.errors.InternalServerError();
       
       if (!player) {
         self.redirect({controller: self.name, action: 'index'});
       } else {
         geddy.model.RoundPlayer.first({round: self.session.get('currentRound'), player: player.id}, function (err, roundPlayer) {
+          if (!roundPlayer) self.redirect({controller: self.name, action: 'index'});
           if (roundPlayer.turns > 0) {
             // get random action
             var randomAction = geddy.actionPool[Math.floor(Math.random()*geddy.actionPool.length)];
