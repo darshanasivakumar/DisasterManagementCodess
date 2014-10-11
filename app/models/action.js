@@ -4,7 +4,7 @@ var Action = function () {
     name: {type: 'string', required: true}
   , story: {type: 'text'}
   , image: {type: 'string'}
-  , quota: {type: 'number'}
+  , jobClass: {type: 'string'}
   , goodAnswer: {type: 'string'}
   , badAnswer: {type: 'string'}
   });
