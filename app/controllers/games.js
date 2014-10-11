@@ -1,4 +1,5 @@
 var Games = function () {
+
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
   this.index = function (req, resp, params) {
@@ -23,6 +24,22 @@ var Games = function () {
     , turns: geddy.config.numberOfTurns
     , score: 0
     });
+    
+    this.redirect({controller: this.name, action: 'game'});
+  }
+  
+  this.game = function (req, resp, params) {
+    // get player
+    
+    // if there are no more turns left, end game
+    
+    // get a random action if there are turns left
+    
+    // render page with action
+  }
+  
+  this.doAction = function (req, resp, params) {
+    // calculate scoring here
   }
   
 };
