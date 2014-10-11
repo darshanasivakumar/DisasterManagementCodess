@@ -17,7 +17,7 @@
 */
 
 var config = {
-  appName: 'Geddy App (development)'
+  appName: 'Rescue Squad'
 , detailedErrors: true
 , debug: true
 , hostname: null
