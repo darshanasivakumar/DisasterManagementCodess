@@ -1,8 +1,8 @@
-var CreateRoundUsers = function () {
+var CreateRoundPlayers = function () {
   this.up = function (next) {
     var def = function (t) {
           t.column('round', 'string');
-          t.column('user', 'string');
+          t.column('player', 'string');
           t.column('turns', 'string');
           t.column('score', 'string');
         }
@@ -14,7 +14,7 @@ var CreateRoundUsers = function () {
             next();
           }
         };
-    this.createTable('RoundUsers', def, callback);
+    this.createTable('RoundPlayers', def, callback);
   };
 
   this.down = function (next) {
@@ -26,8 +26,8 @@ var CreateRoundUsers = function () {
             next();
           }
         };
-    this.dropTable('RoundUsers', callback);
+    this.dropTable('RoundPlayers', callback);
   };
 };
 
-exports.CreateRoundUsers = CreateRoundUsers;
+exports.CreateRoundPlayers = CreateRoundPlayers;

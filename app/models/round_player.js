@@ -1,8 +1,8 @@
-var RoundUser = function () {
+var RoundPlayer = function () {
 
   this.defineProperties({
     round: {type: 'string'},
-    user: {type: 'string'},
+    player: {type: 'string'},
     turns: {type: 'string'},
     score: {type: 'string'}
   });
@@ -33,15 +33,15 @@ var RoundUser = function () {
 
 /*
 // Can also define them on the prototype
-RoundUser.prototype.someOtherMethod = function () {
+RoundPlayer.prototype.someOtherMethod = function () {
   // Do some other stuff
 };
 // Can also define static methods and properties
-RoundUser.someStaticMethod = function () {
+RoundPlayer.someStaticMethod = function () {
   // Do some other stuff
 };
-RoundUser.someStaticProperty = 'YYZ';
+RoundPlayer.someStaticProperty = 'YYZ';
 */
 
-exports.RoundUser = RoundUser;
+exports.RoundPlayer = RoundPlayer;
 
