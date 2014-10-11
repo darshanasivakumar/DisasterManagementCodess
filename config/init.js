@@ -23,41 +23,6 @@ var init = function(cb) {
       geddy.log.error(msg);
     });
   }
-  
-  geddy.actionPool = [];
-   var action = geddy.model.Action.create({
-    name: 'HurricaneKatrina'
-	, story: 'One of the 5 deadliest hurricanes in the US so far.  ~1833 lives affected.  '
-	, image: ''
-	, jobClass: ''
-	, goodAnswer: ''
-	, badAnswer: ''
-    , jobClass: req.jobClass
-    });
-	action.save();
-	geddy.actionPool.push(action.Id);
-	
-	var action1 = geddy.model.Action.create({
-	 name: 'FoodDistribution'
-	 , story: '100 families in need of food supplies 10 meters from you'
-	 , image: ''
-	 , jobClass: ''
-	 , goodAnswer: ''
-	 , badAnswer: ''
-	 });
-	 action1.save();
-	 geddy.actionPool.push(action1.Id);
-	 
-	 var action2 = geddy.model.Action.create({
-	  name: 'MedicalHelp'
-	  , story: '~200 people need first aid in a nearby shelter'
-	  , image: ''
-	  , jobClass: ''
-	  , goodAnswer: ''
-	  , badAnswer: ''
-	 });
-	 action2.save();
-	 geddy.actionPool.push(action2.Id);
 	 
   cb();
 };
