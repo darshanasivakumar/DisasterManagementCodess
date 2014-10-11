@@ -33,7 +33,8 @@ var init = function(cb) {
 	, goodAnswer: ''
 	, badAnswer: ''
     , jobClass: req.jobClass
-    }).save();
+    });
+	action.save();
 	geddy.actionPool.push(action.Id);
 	
 	var action1 = geddy.model.Action.create({
@@ -43,7 +44,8 @@ var init = function(cb) {
 	 , jobClass: ''
 	 , goodAnswer: ''
 	 , badAnswer: ''
-	 }).save();
+	 });
+	 action1.save();
 	 geddy.actionPool.push(action1.Id);
 	 
 	 var action2 = geddy.model.Action.create({
@@ -53,7 +55,8 @@ var init = function(cb) {
 	  , jobClass: ''
 	  , goodAnswer: ''
 	  , badAnswer: ''
-	 }).save();
+	 });
+	 action2.save();
 	 geddy.actionPool.push(action2.Id);
 	 
   cb();
