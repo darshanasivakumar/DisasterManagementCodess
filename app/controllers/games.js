@@ -89,7 +89,7 @@ var Games = function () {
             var randomActionId = actionPool[Math.floor(Math.random()*actionPool.length)];
             geddy.model.Action.first(randomActionId, function (err, randomAction) {
               // TODO: create html template play.html.ejs
-              self.respond({randomAction: randomAction}, {format: 'json'});
+              self.respond({player: player, roundPlayer: roundPlayer, randomAction: randomAction});
             });
           } else {
             // end game
