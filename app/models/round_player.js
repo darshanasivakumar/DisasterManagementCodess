@@ -4,7 +4,8 @@ var RoundPlayer = function () {
     round: {type: 'string'},
     player: {type: 'string'},
     turns: {type: 'number'},
-    score: {type: 'number'}
+    score: {type: 'number'},
+    quota: {type: 'number'}
   });
 
   /*

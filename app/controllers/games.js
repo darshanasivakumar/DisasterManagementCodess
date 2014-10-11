@@ -28,14 +28,28 @@ var Games = function () {
     this.redirect({controller: this.name, action: 'game'});
   }
   
-  this.game = function (req, resp, params) {
+  this.play = function (req, resp, params) {
+    var self = this;
+    
     // get player
-    
-    // if there are no more turns left, end game
-    
-    // get a random action if there are turns left
-    
-    // render page with action
+    geddy.model.Player.first(self.session.get('playerId'), function (err, player) {
+      if (err) throw geddy.errors.InternalServerError();
+      
+      if (!player) {
+        self.redirect({controller: self.name, action: 'index'});
+      } else {
+        geddy.model.RoundPlayer.first({player: player.id}, function (err, roundPlayer) {
+          if (roundPlayer.turns > 0) {
+            // get random action
+            var randomAction = geddy.actionPool[Math.floor(Math.random()*geddy.actionPool.length)];
+            self.respond({randomAction: randomAction});
+          } else {
+            // end game
+            self.redirect({controller: self.name, action: 'index'});
+          }
+        });
+      }
+    });
   }
   
   this.doAction = function (req, resp, params) {

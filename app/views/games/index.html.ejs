@@ -1,15 +1,41 @@
+<div class="panel">
 PICK A CHARACTER
 
 <br />
 
 <form action="/game/start" method="post">
-  <label for="playerName">Name</label>
-  <input type="text" name="playerName" />
+  <div class="row">
+    <div class="small-3 columns">
+      <label for="playerName">Name</label>
+    </div>
+    <div class="small-9 columns">
+      <input type="text" name="playerName" />
+    </div>
+  </div>
 
-  <br />
-
-  <button type="submit" name="jobClass" value="rescueOperator">Rescue Operator</button>
-  <button type="submit" name="jobClass" value="paramedic">Paramedic</button>
-  <button type="submit" name="jobClass" value="distributor">Distributor</button>
-  <button type="submit" name="jobClass" value="security">Security</button>
+  <div class="row">
+    <div class="small-8 columns">
+      <%- imageTag('rescue.jpg', {style: 'max-height: 150px'}) %>
+      <button type="submit" name="jobClass" value="rescueOperator">Rescue Operator</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-8 columns">
+      <%- imageTag('paramedic.jpg', {style: 'max-height: 150px'}) %>
+      <button type="submit" name="jobClass" value="paramedic">Paramedic</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-8 columns">
+      <%- imageTag('distributor.jpg', {style: 'max-height: 150px'}) %>
+      <button type="submit" name="jobClass" value="distributor">Distributor</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-8 columns">
+      <%- imageTag('security.jpg', {style: 'max-height: 150px'}) %>
+      <button type="submit" name="jobClass" value="security">Security</button>
+    </div>
+  </div>
 </form>
+</div>
