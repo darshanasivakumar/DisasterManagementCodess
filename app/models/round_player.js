@@ -3,8 +3,8 @@ var RoundPlayer = function () {
   this.defineProperties({
     round: {type: 'string'},
     player: {type: 'string'},
-    turns: {type: 'string'},
-    score: {type: 'string'}
+    turns: {type: 'number'},
+    score: {type: 'number'}
   });
 
   /*
