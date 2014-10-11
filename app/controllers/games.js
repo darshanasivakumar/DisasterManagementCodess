@@ -7,6 +7,8 @@ var Games = function () {
   };
   
   this.start = function (req, resp, params) {
+    var self = this;
+    
     // create a player
     var player = geddy.model.Player.create({
       name: req.playerName
@@ -23,7 +25,8 @@ var Games = function () {
     , player: player.id
     , turns: geddy.config.numberOfTurns
     , score: 0
-    });
+    }).save();
+    self.session.set('currentRound', round.id);
     
     this.redirect({controller: this.name, action: 'game'});
   }
@@ -38,7 +41,7 @@ var Games = function () {
       if (!player) {
         self.redirect({controller: self.name, action: 'index'});
       } else {
-        geddy.model.RoundPlayer.first({player: player.id}, function (err, roundPlayer) {
+        geddy.model.RoundPlayer.first({round: self.session.get('currentRound'), player: player.id}, function (err, roundPlayer) {
           if (roundPlayer.turns > 0) {
             // get random action
             var randomAction = geddy.actionPool[Math.floor(Math.random()*geddy.actionPool.length)];
