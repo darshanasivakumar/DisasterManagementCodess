@@ -1,26 +1,46 @@
+<div class="panel text-center">
+	<strong><%= player.name %> - <%= player.jobClass %></strong>
+  <br />
+  Turns Left: <strong><%= roundPlayer.turns %></strong> | Current Score: <strong><%= roundPlayer.score %></strong>
+  <br />
+  In dire need of your specialty: <strong><%= roundPlayer.quota %></strong>
+</div>
+
 <div class="panel">
-	<%= player.name %> - <%= player.jobClass %>
-  <br />
-  Quota: <%= roundPlayer.quota %>
-	<br />
-	Turns Left: <%= roundPlayer.turns %>
-  <br />
-  Current Score: <%= roundPlayer.score %>
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-8 columns">
+          <h3><%= randomAction.name %></h3>
+          <p><%= randomAction.story %></p>
+        </div>
+        <div class="small-4 columns text-center">
+          <%- imageTag(randomAction.image, {style: 'max-height: 150px'}) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="row">
+    <div class="small-12 columns">
+      <form action="/game/act" method="post">
+        <p><%= randomAction.question %></p>
+        <input type="hidden" name="actionId" value="<%- randomAction.id %>" />
+        <br />
+        <button type="submit" value="<%= randomAction.goodAnswer %>" name="answer"><%= randomAction.goodAnswer %></button>
+        <br />
+        <button type="submit" value="<%= randomAction.badAnswer %>" name"answer"><%= randomAction.badAnswer %></button>
+        <br />
+        <button type="submit" value="" name="answer">Find Something Else To Do</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 <div class="row">
-  <div class="small-8 columns">
-    <h3><%= randomAction.name %></h3>
-    <%- imageTag(randomAction.image, {style: 'max-height: 150px'}) %>
-    <p><%= randomAction.story %></p>
-    <form action="/game/act" method="post">
-      <input type="hidden" name="actionId" value="<%- randomAction.id %>" />
-      <br />
-      <button type="submit" value="<%= randomAction.goodAnswer %>" name="answer"><%= randomAction.goodAnswer %></button>
-      <br />
-      <button type="submit" value="<%= randomAction.badAnswer %>" name"answer"><%= randomAction.badAnswer %></button>
-      <br />
-      <button type="submit" value="">Find Something Else To Do</button>
-    </form>
+  <div class="small-12 columns text-center">
+    <a href="/game">Start Over?</a>
   </div>
 </div>

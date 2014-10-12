@@ -4,14 +4,14 @@ var Games = function () {
 
   var actionPool = [];
   
-  var action = geddy.model.Action.create({
-    name: 'HurricaneKatrina'
-	, story: 'One of the 5 deadliest hurricanes in the US so far.  ~1833 lives affected.  '
-	, image: ''
-	, goodAnswer: ''
-	, badAnswer: ''
-	, jobClass: 'Rescue Operator'
-    });
+  var action = geddy.model.Action.create({ 
+    name: 'Typhoon Haiyan',
+    story: ' Affected on Nov 8, 2013 — Location : Central Philippines — 13 million people affected',
+    image: '', 
+    question:  '1.9 million people have been left homeless . 2.5 million in need of food. As a rescue operator, should you help the homeless or distribute food ?',
+    goodAnswer: 'Rescue the homeless first and notify the Distributor',
+    jobClass: 'Rescue Operator',
+    badAnswer: 'More people are dying of hunger! I need to save them!'});
 	action.save();
 	actionPool.push(action.id);
 	
@@ -115,8 +115,10 @@ var Games = function () {
           geddy.model.RoundPlayer.first({round: self.session.get('currentRound'), player: player.id}, function (err, roundPlayer) {
             if (!roundPlayer) self.redirect({controller: self.name, action: 'index'});
             
-            if (!params.answer === '') {
-              var isAGoodAnswer = action.goodAnswer === params.answer;
+            geddy.log.debug(JSON.stringify(params));
+            if (params.answer !== '') {
+              var isAGoodAnswer = (action.goodAnswer === params.answer);
+              geddy.log.debug(isAGoodAnswer);
               if (isAGoodAnswer) {
                 if (player.jobClass === action.jobClass) {
                   roundPlayer.score += 50;

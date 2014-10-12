@@ -1,41 +1,56 @@
 <div class="panel">
-PICK A CHARACTER
+  <h3 class="text-center">PICK A CHARACTER</h3>
+  
+  <br />
 
-<br />
+  <form action="/game/start" method="post">
+    <div class="row">
+      <div class="small-7 small-centered columns">
+        <div class="row">
+          <div class="small-7 small-centered columns">
+            <div class="row">
+              <div class="small-2 columns">
+                <label for="playerName" class="right inline">Name</label>
+              </div>
+              <div class="small-10 columns">
+                <input type="text" name="playerName" id="playerName" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<form action="/game/start" method="post">
-  <div class="row">
-    <div class="small-3 columns">
-      <label for="playerName">Name</label>
+    <div class="row">
+      <div class="small-10 small-centered columns">
+        <h3 class="text-center">JOB CLASS</h3>
+        <div class="row">
+          <div class="small-8 columns">
+            <%- imageTag('rescue.jpg', {style: 'max-height: 150px'}) %>
+            <button type="submit" name="jobClass" value="Rescue Operator">Rescue Operator</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-8 columns">
+            <%- imageTag('paramedic.jpg', {style: 'max-height: 150px'}) %>
+            <button type="submit" name="jobClass" value="Paramedic">Paramedic</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-8 columns">
+            <%- imageTag('distributor.jpg', {style: 'max-height: 150px'}) %>
+            <button type="submit" name="jobClass" value="Distributor">Distributor</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-8 columns">
+            <%- imageTag('security.jpg', {style: 'max-height: 150px'}) %>
+            <button type="submit" name="jobClass" value="Security">Security</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="small-9 columns">
-      <input type="text" name="playerName" />
-    </div>
-  </div>
+  
+  </form>
 
-  <div class="row">
-    <div class="small-8 columns">
-      <%- imageTag('rescue.jpg', {style: 'max-height: 150px'}) %>
-      <button type="submit" name="jobClass" value="Rescue Operator">Rescue Operator</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-8 columns">
-      <%- imageTag('paramedic.jpg', {style: 'max-height: 150px'}) %>
-      <button type="submit" name="jobClass" value="Paramedic">Paramedic</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-8 columns">
-      <%- imageTag('distributor.jpg', {style: 'max-height: 150px'}) %>
-      <button type="submit" name="jobClass" value="Distributor">Distributor</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-8 columns">
-      <%- imageTag('security.jpg', {style: 'max-height: 150px'}) %>
-      <button type="submit" name="jobClass" value="Security">Security</button>
-    </div>
-  </div>
-</form>
 </div>

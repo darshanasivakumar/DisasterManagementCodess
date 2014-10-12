@@ -2,7 +2,8 @@ var Action = function () {
 
   this.defineProperties({
     name: {type: 'string', required: true}
-  , story: {type: 'text'}
+  , story: {type: 'string'}
+  , question: {type: 'string'}
   , image: {type: 'string'}
   , jobClass: {type: 'string'}
   , goodAnswer: {type: 'string'}
