@@ -1,0 +1,26 @@
+<div class="panel">
+	<%= player.name %> - <%= player.jobClass %>
+  <br />
+  Quota: <%= roundPlayer.quota %>
+	<br />
+	Turns Left: <%= roundPlayer.turns %>
+  <br />
+  Current Score: <%= roundPlayer.score %>
+</div>
+
+<div class="row">
+  <div class="small-8 columns">
+    <h3><%= randomAction.name %></h3>
+    <%- imageTag(randomAction.image, {style: 'max-height: 150px'}) %>
+    <p><%= randomAction.story %></p>
+    <form action="/game/act" method="post">
+      <input type="hidden" name="actionId" value="<%- randomAction.id %>" />
+      <br />
+      <button type="submit" value="<%= randomAction.goodAnswer %>" name="answer"><%= randomAction.goodAnswer %></button>
+      <br />
+      <button type="submit" value="<%= randomAction.badAnswer %>" name"answer"><%= randomAction.badAnswer %></button>
+      <br />
+      <button type="submit" value="">Find Something Else To Do</button>
+    </form>
+  </div>
+</div>
