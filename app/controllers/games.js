@@ -8,35 +8,34 @@ var Games = function () {
     name: 'HurricaneKatrina'
 	, story: 'One of the 5 deadliest hurricanes in the US so far.  ~1833 lives affected.  '
 	, image: ''
-	, jobClass: ''
 	, goodAnswer: ''
 	, badAnswer: ''
-  , jobClass: 'rescueOperator'
+	, jobClass: 'Rescue Operator'
     });
 	action.save();
-	actionPool.push(action.Id);
+	actionPool.push(action.id);
 	
 	var action1 = geddy.model.Action.create({
-	 name: 'FoodDistribution'
-	 , story: '100 families in need of food supplies 10 meters from you'
-	 , image: ''
-	 , jobClass: ''
-	 , goodAnswer: ''
-	 , badAnswer: ''
-	 });
-	 action1.save();
-	 actionPool.push(action1.Id);
+     name: 'FoodDistribution'
+   , story: '100 families in need of food supplies 10 meters from you'
+   , image: ''
+   , jobClass: 'Distributor'
+   , goodAnswer: ''
+   , badAnswer: ''
+  });
+  action1.save();
+	actionPool.push(action1.id);
 	 
-	 var action2 = geddy.model.Action.create({
+  var action2 = geddy.model.Action.create({
 	  name: 'MedicalHelp'
 	  , story: '~200 people need first aid in a nearby shelter'
 	  , image: ''
-	  , jobClass: ''
+	  , jobClass: 'Paramedic'
 	  , goodAnswer: ''
 	  , badAnswer: ''
 	 });
 	 action2.save();
-	 actionPool.push(action2.Id);
+	 actionPool.push(action2.id);
 
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
@@ -64,6 +63,7 @@ var Games = function () {
       round: round.id
     , player: player.id
     , turns: geddy.config.numberOfTurns
+    , quota: 3
     , score: 0
     });
     roundPlayer.save();
@@ -74,7 +74,7 @@ var Games = function () {
   
   this.play = function (req, resp, params) {
     var self = this;
-            
+
     // get player
     geddy.model.Player.first({id: self.session.get('playerId')}, function (err, player) {
       if (err) throw geddy.errors.InternalServerError();
@@ -88,7 +88,6 @@ var Games = function () {
             // get random action
             var randomActionId = actionPool[Math.floor(Math.random()*actionPool.length)];
             geddy.model.Action.first(randomActionId, function (err, randomAction) {
-              // TODO: create html template play.html.ejs
               self.respond({player: player, roundPlayer: roundPlayer, randomAction: randomAction});
             });
           } else {
@@ -102,7 +101,69 @@ var Games = function () {
   
   this.doAction = function (req, resp, params) {
     // calculate scoring here
+    var self = this;
+
+    // get player
+    geddy.model.Player.first({id: self.session.get('playerId')}, function (err, player) {
+      if (err) throw geddy.errors.InternalServerError();
+      
+      if (!player) {
+        self.redirect({controller: self.name, action: 'index'});
+      } else {
+        geddy.model.Action.first(params.actionId, function (err, action) {
+          if (!action) self.redirect({controller: self.name, action: 'play'});
+          geddy.model.RoundPlayer.first({round: self.session.get('currentRound'), player: player.id}, function (err, roundPlayer) {
+            if (!roundPlayer) self.redirect({controller: self.name, action: 'index'});
+            
+            if (!params.answer === '') {
+              var isAGoodAnswer = action.goodAnswer === params.answer;
+              if (isAGoodAnswer) {
+                if (player.jobClass === action.jobClass) {
+                  roundPlayer.score += 50;
+                  roundPlayer.quota--;
+                } else {
+                  if (roundPlayer.quota > 0) {
+                    roundPlayer.score -= 20;
+                  } else {
+                    roundPlayer.score += 20;
+                  }
+                }
+              } else {
+                roundPlayer.score -= 20;
+              }
+              roundPlayer.turns--;
+              roundPlayer.save();
+            }
+            
+            if (roundPlayer.turns > 0) {
+              self.redirect({controller: self.name, action: 'play'});
+            } else {
+              // end game
+              self.redirect({controller: self.name, action: 'end'});
+            }
+          });
+        });
+      }
+    });
   }
+  
+  this.end = function (req, resp, params) {
+    var self = this;
+
+    // get player
+    geddy.model.Player.first({id: self.session.get('playerId')}, function (err, player) {
+      if (err) throw geddy.errors.InternalServerError();
+      
+      if (!player) {
+        self.redirect({controller: self.name, action: 'index'});
+      } else {
+        geddy.model.RoundPlayer.first({round: self.session.get('currentRound'), player: player.id}, function (err, roundPlayer) {
+          if (!roundPlayer) self.redirect({controller: self.name, action: 'index'});
+          self.respond({player: player, roundPlayer: roundPlayer}, {format: json});
+        });
+      }
+    });
+  };
   
 };
 

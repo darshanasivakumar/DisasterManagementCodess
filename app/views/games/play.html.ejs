@@ -1,7 +1,11 @@
 <div class="panel">
 	<%= player.name %> - <%= player.jobClass %>
+  <br />
+  Quota: <%= roundPlayer.quota %>
 	<br />
 	Turns Left: <%= roundPlayer.turns %>
+  <br />
+  Current Score: <%= roundPlayer.score %>
 </div>
 
 <div class="row">
@@ -12,9 +16,11 @@
     <form action="/game/act" method="post">
       <input type="hidden" name="actionId" value="<%- randomAction.id %>" />
       <br />
-      <button value="<%= randomAction.goodAnswer %>"><%= randomAction.goodAnswer %></button>
+      <button type="submit" value="<%= randomAction.goodAnswer %>" name="answer"><%= randomAction.goodAnswer %></button>
       <br />
-      <button value="<%= randomAction.badAnswer %>"><%= randomAction.badAnswer %></button>
+      <button type="submit" value="<%= randomAction.badAnswer %>" name"answer"><%= randomAction.badAnswer %></button>
+      <br />
+      <button type="submit" value="">Find Something Else To Do</button>
     </form>
   </div>
 </div>
