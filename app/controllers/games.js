@@ -7,7 +7,7 @@ var Games = function () {
   var action = geddy.model.Action.create({ 
     name: 'Typhoon Haiyan',
     story: ' Affected on Nov 8, 2013 — Location : Central Philippines — 13 million people affected',
-    image: '', 
+    image: 'rescue2.jpeg', 
     question:  '1.9 million people have been left homeless . 2.5 million in need of food. As a rescue operator, should you help the homeless or distribute food ?',
     goodAnswer: 'Rescue the homeless first and notify the Distributor',
     jobClass: 'Rescue Operator',
@@ -15,27 +15,38 @@ var Games = function () {
 	action.save();
 	actionPool.push(action.id);
 	
-	var action1 = geddy.model.Action.create({
-     name: 'FoodDistribution'
-   , story: '100 families in need of food supplies 10 meters from you'
-   , image: ''
-   , jobClass: 'Distributor'
-   , goodAnswer: ''
-   , badAnswer: ''
-  });
-  action1.save();
-	actionPool.push(action1.id);
-	 
-  var action2 = geddy.model.Action.create({
-	  name: 'MedicalHelp'
-	  , story: '~200 people need first aid in a nearby shelter'
-	  , image: ''
-	  , jobClass: 'Paramedic'
-	  , goodAnswer: ''
-	  , badAnswer: ''
-	 });
-	 action2.save();
-	 actionPool.push(action2.id);
+  var action2 = geddy.model.Action.create({ 
+    name: 'Typhoon Haiyan',
+    story: ' One of the strongest tropical cyclones ever recorded, which devastated portions of Southeast Asia, particularly the Philippines, on November 8, 2013.[1] It is the deadliestPhilippine typhoon on record , killing at least 6,300 people in that country alone. It has left 2.5 millions in need of resources and 1.9 million homeless',
+    image: 'hungry.jpeg', 
+    question:  'You encounter hungry children and you have a patient to deal with. Would you heal the patient or care for the child?',
+    goodAnswer: 'Notify the distributor and heal the patient',
+    jobClass: 'Paramedic',
+    badAnswer: 'Serve the children with food and notify the Distributor'});
+  action2.save();
+  actionPool.push(action2.id);
+
+var action3 = geddy.model.Action.create({ 
+    name: 'Typhoon Haiyan',
+    story: ' One of the strongest tropical cyclones ever recorded, which devastated portions of Southeast Asia, particularly the Philippines, on November 8, 2013.[1] It is the deadliestPhilippine typhoon on record , killing at least 6,300 people in that country alone. It has left 2.5 millions in need of resources and 1.9 million homeless',
+    image: 'Typhoon-Haiyan.jpg', 
+    question:  'You encounter homeless women and children looking for shelter. Would you choose to help them find a shelter or carry on about distributing food ?',
+    goodAnswer: 'Distribute the food',
+    jobClass: 'Distributor',
+    badAnswer: 'Help the homeless and notify Rescue Operator before distributing food'});
+  action3.save();
+  actionPool.push(action3.id); 
+
+  var action4 = geddy.model.Action.create({ 
+    name: 'Haiti earthquake',
+    story: ' Affected on Jan 12, 2010 — Location : Haiti — 3.5 million people affected - on a richter scale 7 with 52 aftershocks',
+    image: 'Typhoon-Haiyan.jpg', 
+    question:  'Slow distribution of resources in the days after the earthquake has resulted in sporadic violence. Help is also needed to build shelter for the displaced victims. As a security personal, what should you do?',
+    goodAnswer: 'Help build shelter if I have no dire need of my speciality',
+    jobClass: 'Security',
+    badAnswer: 'To be on the safer side, I should only help with security actions'});
+  action4.save();
+  actionPool.push(action4.id);   
 
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
@@ -63,7 +74,7 @@ var Games = function () {
       round: round.id
     , player: player.id
     , turns: geddy.config.numberOfTurns
-    , quota: 3
+    , quota: 1
     , score: 0
     });
     roundPlayer.save();
@@ -161,7 +172,7 @@ var Games = function () {
       } else {
         geddy.model.RoundPlayer.first({round: self.session.get('currentRound'), player: player.id}, function (err, roundPlayer) {
           if (!roundPlayer) self.redirect({controller: self.name, action: 'index'});
-          self.respond({player: player, roundPlayer: roundPlayer}, {format: json});
+          self.respond({player: player, roundPlayer: roundPlayer});
         });
       }
     });

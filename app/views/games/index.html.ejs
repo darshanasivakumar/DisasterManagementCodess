@@ -1,5 +1,5 @@
 <div class="panel">
-  <h3 class="text-center">PICK A CHARACTER</h3>
+  <h3 class="text-center">CHARACTER SELECT</h3>
   
   <br />
 
@@ -10,7 +10,7 @@
           <div class="small-7 small-centered columns">
             <div class="row">
               <div class="small-2 columns">
-                <label for="playerName" class="right inline">Name</label>
+                <label for="playerName" class="right inline"><strong>Name</strong></label>
               </div>
               <div class="small-10 columns">
                 <input type="text" name="playerName" id="playerName" />
@@ -20,36 +20,40 @@
         </div>
       </div>
     </div>
+    
+    <hr />
 
     <div class="row">
-      <div class="small-10 small-centered columns">
-        <h3 class="text-center">JOB CLASS</h3>
+      <div class="small-12 columns">
+        <h3 class="text-center">Pick a job class and start playing!</h3>
+        <br />
         <div class="row">
-          <div class="small-8 columns">
+          <div class="small-6 text-center panel columns">
             <%- imageTag('rescue.jpg', {style: 'max-height: 150px'}) %>
+            <br />
             <button type="submit" name="jobClass" value="Rescue Operator">Rescue Operator</button>
           </div>
-        </div>
-        <div class="row">
-          <div class="small-8 columns">
+          <div class="small-6 text-center panel columns">
             <%- imageTag('paramedic.jpg', {style: 'max-height: 150px'}) %>
+            <br />
             <button type="submit" name="jobClass" value="Paramedic">Paramedic</button>
           </div>
         </div>
         <div class="row">
-          <div class="small-8 columns">
+          <div class="small-6 text-center panel columns">
             <%- imageTag('distributor.jpg', {style: 'max-height: 150px'}) %>
+            <br />
             <button type="submit" name="jobClass" value="Distributor">Distributor</button>
           </div>
-        </div>
-        <div class="row">
-          <div class="small-8 columns">
+          <div class="small-6 text-center panel columns">
             <%- imageTag('security.jpg', {style: 'max-height: 150px'}) %>
+            <br />
             <button type="submit" name="jobClass" value="Security">Security</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
   
   </form>
 

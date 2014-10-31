@@ -31,7 +31,7 @@ var config = {
   , key: 'sid'
   , expiry: 14 * 24 * 60 * 60
   }
-, numberOfTurns: 10
+, numberOfTurns: 3
 };
 
 module.exports = config;

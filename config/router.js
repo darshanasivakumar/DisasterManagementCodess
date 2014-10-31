@@ -24,6 +24,7 @@ router.get('/game').to('Games.index');
 router.post('/game/start').to('Games.start');
 router.get('/game/play').to('Games.play');
 router.post('/game/act').to('Games.doAction');
+router.get('/game/end').to('Games.end');
 
 // Basic routes
 // router.match('/moving/pictures/:id', 'GET').to('Moving.pictures');
